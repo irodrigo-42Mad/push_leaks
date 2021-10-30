@@ -6,7 +6,7 @@
 /*   By: irodrigo <irodrigo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 13:14:40 by irodrigo          #+#    #+#             */
-/*   Updated: 2021/10/30 14:40:42 by irodrigo         ###   ########.fr       */
+/*   Updated: 2021/10/30 15:11:12 by irodrigo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,20 @@ void	ft_first_sort(t_element **el)
 	int			n_elm;
 	int			x;
 	t_element	*sorted;
-
+	t_element	*tmp;
+	
 	x = 0;
 	n_elm = ft_lstlength(*el);
-	//system ("leaks push_swap");
 	sorted = ft_partial_sort(*el, ft_lstlength(*el));
+	tmp = sorted;
 	while (x < n_elm)
 	{
 		ft_search_replace(sorted, *el, x);
 		sorted = sorted->next;
 		x++;
 	}
+	free (tmp);
+	tmp = NULL;
 }
 
 t_element	*ft_init_stack(char **els)
@@ -40,7 +43,6 @@ t_element	*ft_init_stack(char **els)
 		ft_addlst(&stk, ft_elm_atoi(*els));
 		els++;
 	}
-	//ft_clean_number_table(els);
 	return (stk);
 }
 
